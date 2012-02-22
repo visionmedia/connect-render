@@ -4,11 +4,17 @@
 
 Template Render helper for [connect](https://github.com/senchalabs/connect).
 
+## Install
+
+```
+$ npm install connect-render
+```
+
 ## Usage
 
 ```
 var connect = require('connect');
-var render = require('../');
+var render = require('connect-render');
 
 var app = connect(
   render({
