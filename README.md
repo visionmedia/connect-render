@@ -14,7 +14,11 @@ var app = connect(
   render({
     root: __dirname + '/views',
     layout: 'layout.html',
-    cache: true // `false` for debug
+    cache: true, // `false` for debug
+    helpers: {
+      sitename: 'connect-render demo site',
+      starttime: new Date().getTime()
+    }
   })
 );
 
