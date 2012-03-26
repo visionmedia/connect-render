@@ -68,6 +68,7 @@ describe('render.js', function() {
         res.body.toString().should.equal(success);
         render._cache.should.have.property('index.html');
         render._cache.should.have.property('layout.html');
+        res.headers['content-length'].should.above(0);
         done();
       });
     });
@@ -83,6 +84,7 @@ describe('render.js', function() {
     it('should return no layout', function(done) {
       app.request().get('/nolayout').end(function(res) {
         res.should.status(200);
+        res.headers['content-length'].should.above(0);
         res.body.toString().should.equal('nolayout');
         done();
       });
@@ -99,6 +101,7 @@ describe('render.js', function() {
     it('should support options.scope', function(done) {
       app.request().get('/options.scope').end(function(res) {
         res.should.status(200);
+        res.headers['content-length'].should.above(0);
         res.body.toString().should.equal('scope test');
         done();
       });
@@ -109,6 +112,7 @@ describe('render.js', function() {
     it('should fixed partial in partial', function(done) {
       app.request().get('/partial_in_partial').end(function(res) {
         res.should.status(200);
+        res.headers['content-length'].should.above(0);
         res.body.toString().should.equal('partialpartial');
         done();
       });
@@ -121,7 +125,8 @@ describe('render.js', function() {
         errormsg = msg;
       };
       app.request().get('/partial_not_exists').end(function(res) {
-        // res.should.status(200);
+        res.should.status(200);
+        res.headers['content-length'].should.above(0);
         res.body.toString().should.equal('partial_not_exists');
         console.error = _error;
         errormsg.should.include('[connect-render] Error: cannot load view partial');

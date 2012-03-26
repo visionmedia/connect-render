@@ -89,7 +89,9 @@ function render(view, options) {
     }
     var layout = settings.layout;
     if (options.layout === false || !layout) {
-      return self.end(str);
+      var buf = new Buffer(str);
+      self.setHeader('Content-Length', buf.length);
+      return self.end(buf);
     }
     // render layout template, add view str to layout's locals.body;
     options.body = str;
@@ -97,7 +99,9 @@ function render(view, options) {
       if (err) {
         return self.req.next(err);
       }
-      self.end(str);
+      var buf = new Buffer(str);
+      self.setHeader('Content-Length', buf.length);
+      self.end(buf);
     });
   });
   return this;
