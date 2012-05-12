@@ -13,7 +13,7 @@ var app = connect(
   })
 );
 
-app.use(function(req, res) {
+app.use(function (req, res) {
   res.render('index.html', { url: req.url });
 });
 

@@ -1,7 +1,7 @@
 SRC = $(shell find lib -type f -name "*.test.js")
 TESTS = test/*.js
 TESTTIMEOUT = 1000
-REPORTER = spec
+REPORTER = dot
 
 test:
 	@NODE_ENV=test ./node_modules/.bin/mocha \

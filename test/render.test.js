@@ -25,7 +25,7 @@ var options = {
 
 var app = connect(render(options));
 
-app.use(function(req, res) {
+app.use(function (req, res) {
   if (req.url === '/viewerror') {
     return res.render('noexists.html', { name: 'fengmk2' });
   }
@@ -54,16 +54,16 @@ var success = fs.readFileSync(__dirname + '/success.html', 'utf8')
   .replace('$starttime$', options.helpers.starttime);
 
 
-describe('render.js', function() {
-  before(function(done) {
+describe('render.js', function () {
+  before(function (done) {
     app.listen(0, done);
   });
 
-  describe('#render()', function() {
-    it('should work', function(done) {
+  describe('#render()', function () {
+    it('should work', function (done) {
       render._cache.should.not.have.property('index.html');
       render._cache.should.not.have.property('layout.html');
-      app.request().get('/').end(function(res) {
+      app.request().get('/').end(function (res) {
         res.should.status(200);
         res.body.toString().should.equal(success);
         render._cache.should.have.property('index.html');
@@ -73,16 +73,16 @@ describe('render.js', function() {
       });
     });
 
-    it('should error when view not exists', function(done) {
-      app.request().get('/viewerror').end(function(res) {
+    it('should error when view not exists', function (done) {
+      app.request().get('/viewerror').end(function (res) {
         res.should.status(500);
-        res.body.toString().should.include('Error: ENOENT, no such file or directory');
+        res.body.toString().should.include('Error: ENOENT, open');
         done();
       });
     });
 
-    it('should return no layout', function(done) {
-      app.request().get('/nolayout').end(function(res) {
+    it('should return no layout', function (done) {
+      app.request().get('/nolayout').end(function (res) {
         res.should.status(200);
         res.headers['content-length'].should.above(0);
         res.body.toString().should.equal('nolayout');
@@ -90,16 +90,16 @@ describe('render.js', function() {
       });
     });
 
-    it('should return 500 when template error', function(done) {
-      app.request().get('/error').end(function(res) {
+    it('should return 500 when template error', function (done) {
+      app.request().get('/error').end(function (res) {
         res.should.status(500);
         res.body.toString().should.include('ReferenceError: error.html');
         done();
       });
     });
 
-    it('should support options.scope', function(done) {
-      app.request().get('/options.scope').end(function(res) {
+    it('should support options.scope', function (done) {
+      app.request().get('/options.scope').end(function (res) {
         res.should.status(200);
         res.headers['content-length'].should.above(0);
         res.body.toString().should.equal('scope test');
@@ -108,9 +108,9 @@ describe('render.js', function() {
     });
   });
 
-  describe('#partial()', function() {
-    it('should fixed partial in partial', function(done) {
-      app.request().get('/partial_in_partial').end(function(res) {
+  describe('#partial()', function () {
+    it('should fixed partial in partial', function (done) {
+      app.request().get('/partial_in_partial').end(function (res) {
         res.should.status(200);
         res.headers['content-length'].should.above(0);
         res.body.toString().should.equal('partialpartial');
@@ -118,13 +118,13 @@ describe('render.js', function() {
       });
     });
 
-    it('should console.error when partial view not exists', function(done) {
+    it('should console.error when partial view not exists', function (done) {
       var _error = console.error;
       var errormsg = '';
-      console.error = function(msg) {
+      console.error = function (msg) {
         errormsg = msg;
       };
-      app.request().get('/partial_not_exists').end(function(res) {
+      app.request().get('/partial_not_exists').end(function (res) {
         res.should.status(200);
         res.headers['content-length'].should.above(0);
         res.body.toString().should.equal('partial_not_exists');

@@ -1,6 +1,6 @@
 {
   "name": "connect-render",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Template Render helper for connect: res.render(view, options).",
   "keywords": ["connect", "render", "connect-render", "template", "ejs"],
   "author": "fengmk2 <fengmk2@gmail.com> (http://github.com/fengmk2)",
@@ -19,10 +19,11 @@
   "devDependencies": {
     "should": ">=0.4.2",
     "mocha": ">=0.7.1",
-    "connect": "=1.8.5"
+    "connect": "=1.8.5",
+    "jshint": ">=0.7.0"
   },
   "license": "MIT",
   "engines": { 
-    "node": ">= 0.6.0" 
+    "node": ">= 0.6.17" 
   }
 }
