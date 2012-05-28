@@ -7,7 +7,8 @@
     "console",
     "it",
     "describe",
-    "before"
+    "before",
+    "after"
   ],
 
   "node" : true,
