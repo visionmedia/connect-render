@@ -1,6 +1,6 @@
 {
   "name": "connect-render",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Template Render helper for connect: res.render(view, options).",
   "keywords": ["connect", "render", "connect-render", "template", "ejs"],
   "author": "fengmk2 <fengmk2@gmail.com> (http://github.com/fengmk2)",

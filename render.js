@@ -90,13 +90,17 @@ function _render(view, options, callback) {
  * @param  {Object} [options=null]
  */
 function render(view, options) {
+  var self = this;
   options = options || {};
   if (settings.helpers) {
     for (var k in settings.helpers) {
-      options[k] = settings.helpers[k];
+      var helper = settings.helpers[k];
+      if (typeof helper === 'function') {
+        helper = helper(self.req, self);
+      }
+      options[k] = helper;
     }
   }
-  var self = this;
   // add request to options
   if (!options.request) {
     options.request = self.req;
@@ -141,7 +145,10 @@ function render(view, options) {
  *     layout: 'layout.html', // or false for no layout
  *     helpers: {
  *       config: config,
- *       sitename: 'NodeBlog Engine'
+ *       sitename: 'NodeBlog Engine',
+ *       _csrf: function (req, res) {
+ *         return req.session ? req.session._csrf : "";
+ *       },
  *     }
  *   });
  * );

@@ -19,7 +19,10 @@ var options = {
   cache: true, // `false` for debug
   helpers: {
     sitename: 'connect-render demo site',
-    starttime: new Date().getTime()
+    starttime: new Date().getTime(),
+    requestURL: function (req, res) {
+      return req.url;
+    }
   }
 };
 
