@@ -20,4 +20,6 @@ app.use(function (req, res) {
   res.render('index.html', { url: req.url });
 });
 
-app.listen(8080);
+app.listen(8080, function () {
+  console.log('Start listening on http://127.0.0.1:8080/');
+});

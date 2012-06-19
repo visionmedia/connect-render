@@ -66,7 +66,7 @@ var success = fs.readFileSync(__dirname + '/success.html', 'utf8')
 
 describe('render.js', function () {
   before(function (done) {
-    app.listen(0, done);
+    app = app.listen(0, done);
   });
 
   describe('#render()', function () {

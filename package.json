@@ -1,7 +1,7 @@
 {
   "name": "connect-render",
   "version": "0.1.4",
-  "description": "Template Render helper for connect: res.render(view, options).",
+  "description": "Template Render helper using `ejs` for `connect`: res.render(view, options). Support `connect` @1.8.x and @2.2.0+ .",
   "keywords": ["connect", "render", "connect-render", "template", "ejs"],
   "author": "fengmk2 <fengmk2@gmail.com> (http://github.com/fengmk2)",
   "homepage": "http://github.com/fengmk2/connect-render",
@@ -19,7 +19,7 @@
   "devDependencies": {
     "should": ">=0.4.2",
     "mocha": ">=0.7.1",
-    "connect": "=1.8.5",
+    "connect": ">=1.8.0",
     "rewire": ">=0.2.2",
     "jshint": ">=0.7.0"
   },
