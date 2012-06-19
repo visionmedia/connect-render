@@ -1,0 +1,1 @@
+module.exports = process.env.CONNECT_RENDER_COV ? require('./lib-cov/render') : require('./lib/render');

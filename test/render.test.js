@@ -8,10 +8,11 @@
  * Module dependencies.
  */
 
+var rewire = require('rewire');
 var render = require('../');
 var fs = require('fs');
 var connect = require('connect');
-var render = require('../');
+var render = process.env.CONNECT_RENDER_COV ? rewire('../lib-cov/render') : rewire('../lib/render');
 
 var options = {
   root: __dirname + '/views',
@@ -50,6 +51,12 @@ app.use(function (req, res) {
       scope: { name: 'scope test' } 
     });
   }
+  if (req.url === '/layout_error') {
+    return res.render('index.html', { 
+      layout: 'error.html', 
+      name: 'fengmk2'
+    });
+  }
   res.render('index.html', { name: 'fengmk2' });
 });
 
@@ -64,13 +71,28 @@ describe('render.js', function () {
 
   describe('#render()', function () {
     it('should work', function (done) {
-      render._cache.should.not.have.property('index.html');
-      render._cache.should.not.have.property('layout.html');
+      var cache = render.__get__('cache');
+      cache.should.not.have.property('index.html');
+      cache.should.not.have.property('layout.html');
       app.request().get('/').end(function (res) {
         res.should.status(200);
         res.body.toString().should.equal(success);
-        render._cache.should.have.property('index.html');
-        render._cache.should.have.property('layout.html');
+        cache.should.have.property('index.html').with.be.a('function');
+        cache.should.have.property('layout.html').with.be.a('function');
+        res.headers['content-length'].should.above(0);
+        done();
+      });
+    });
+
+    it('should work with cache', function (done) {
+      var cache = render.__get__('cache');
+      cache.should.have.property('index.html').with.be.a('function');
+      cache.should.have.property('layout.html').with.be.a('function');
+      app.request().get('/').end(function (res) {
+        res.should.status(200);
+        res.body.toString().should.equal(success);
+        cache.should.have.property('index.html').with.be.a('function');
+        cache.should.have.property('layout.html').with.be.a('function');
         res.headers['content-length'].should.above(0);
         done();
       });
@@ -101,6 +123,14 @@ describe('render.js', function () {
       });
     });
 
+    it('should return 500 when layout error', function (done) {
+      app.request().get('/layout_error').end(function (res) {
+        res.should.status(500);
+        res.body.toString().should.include('error_var is not defined');
+        done();
+      });
+    });
+
     it('should support options.scope', function (done) {
       app.request().get('/options.scope').end(function (res) {
         res.should.status(200);
@@ -125,7 +155,8 @@ describe('render.js', function () {
       var _error = console.error;
       var errormsg = '';
       console.error = function (msg) {
-        errormsg = msg;
+        var util = require('util');
+        errormsg = util.format.apply(util, Array.prototype.slice.call(arguments));
       };
       app.request().get('/partial_not_exists').end(function (res) {
         res.should.status(200);
@@ -133,6 +164,7 @@ describe('render.js', function () {
         res.body.toString().should.equal('partial_not_exists');
         console.error = _error;
         errormsg.should.include('[connect-render] Error: cannot load view partial');
+        errormsg.should.include('Error: ENOENT, no such file or directory');
         done();
       });
     });

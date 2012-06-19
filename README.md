@@ -2,17 +2,19 @@
 
 [![Build Status](https://secure.travis-ci.org/fengmk2/connect-render.png)](http://travis-ci.org/fengmk2/connect-render)
 
-Template Render helper for [connect](https://github.com/senchalabs/connect).
+Template Render helper using [ejs](https://github.com/visionmedia/ejs) for [connect](https://github.com/senchalabs/connect).
+
+Support connect@1.8.x and connect@2.x .
 
 ## Install
 
-```
+```bash
 $ npm install connect-render
 ```
 
 ## Usage
 
-```
+```javascript
 var connect = require('connect');
 var render = require('connect-render');
 
@@ -23,12 +25,15 @@ var app = connect(
     cache: true, // `false` for debug
     helpers: {
       sitename: 'connect-render demo site',
-      starttime: new Date().getTime()
+      starttime: new Date().getTime(),
+      now: function (req, res) {
+        return new Date();
+      }
     }
   })
 );
 
-app.use(function(req, res) {
+app.use(function (req, res) {
   res.render('index.html', { url: req.url });
 });
 

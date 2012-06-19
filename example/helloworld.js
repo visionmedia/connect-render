@@ -8,7 +8,10 @@ var app = connect(
     cache: true, // `false` for debug
     helpers: {
       sitename: 'connect-render demo site',
-      starttime: new Date().getTime()
+      starttime: new Date().getTime(),
+      now: function (req, res) {
+        return new Date();
+      }
     }
   })
 );
