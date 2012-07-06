@@ -2,15 +2,16 @@
 
 [![Build Status](https://secure.travis-ci.org/fengmk2/connect-render.png)](http://travis-ci.org/fengmk2/connect-render)
 
-Template Render helper using [ejs](https://github.com/visionmedia/ejs) for [connect](https://github.com/senchalabs/connect).
+Template render helper using [ejs](https://github.com/visionmedia/ejs) for [connect](https://github.com/senchalabs/connect).
 
-Support `connect` @1.8.x and @2.2.0+ .
+Support `connect` @1.8.x, @1.9.x and @2.2.0+ .
 
 ## Test connect version
 
 * 1.8.x: 1.8.0 1.8.5 1.8.6 1.8.7
+* 1.9.x: 1.9.0 1.9.1
 * 2.2.x: 2.2.0 2.2.1 2.2.2 
-* 2.3.x: 2.3.0 2.3.1 2.3.2 2.3.3
+* 2.3.x: 2.3.0 2.3.1 2.3.2 2.3.3 2.3.4 2.3.5 2.3.6
 
 ## Install
 

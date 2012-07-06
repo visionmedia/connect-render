@@ -5,7 +5,7 @@
  */
 
 var EventEmitter = require('events').EventEmitter;
-var methods = ['get', 'post', 'put', 'delete', 'head'];
+var methods = ['get', 'post', 'put', 'delete', 'head', 'options'];
 var http = require('http');
 var util = require('util');
 
