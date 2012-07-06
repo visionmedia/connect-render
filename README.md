@@ -13,7 +13,7 @@ Support `connect` @1.8.x, @1.9.x and @2.2.0+ .
 * 2.2.x: 2.2.0 2.2.1 2.2.2 
 * 2.3.x: 2.3.0 2.3.1 2.3.2 2.3.3 2.3.4 2.3.5 2.3.6
 
-Coverage: [**100%**](fengmk2.github.com/coverage/connect-render.html)
+Coverage: [**100%**](http://fengmk2.github.com/coverage/connect-render.html)
 
 ## Install
 
