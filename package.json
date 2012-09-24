@@ -24,7 +24,7 @@
     "mocha": "*",
     "connect": "*",
     "rewire": "*",
-    "supertest": "0.1.x"
+    "supertest": "*"
   },
   "license": "MIT",
   "engines": { 

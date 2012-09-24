@@ -33,6 +33,7 @@ var options = {
 var app = connect(render(options));
 
 app.use(function (req, res) {
+  res.setHeader('Content-Type', 'text/html');
   if (req.url === '/viewerror') {
     return res.render('noexists', { name: 'fengmk2' });
   }
