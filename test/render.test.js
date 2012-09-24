@@ -8,14 +8,16 @@
  * Module dependencies.
  */
 
+var path = require('path');
 var rewire = require('rewire');
-var render = require('../');
 var fs = require('fs');
 var connect = require('connect');
+var request = require('supertest');
 var render = process.env.CONNECT_RENDER_COV ? rewire('../lib-cov/render') : rewire('../lib/render');
+var should = require('should');
 
 var options = {
-  root: __dirname + '/views',
+  root: path.join(__dirname, 'views'),
   layout: 'layout.html',
   cache: true, // `false` for debug
   helpers: {
@@ -69,14 +71,15 @@ describe('render.js', function () {
     app = app.listen(0, done);
   });
 
-  describe('#render()', function () {
+  describe('render()', function () {
     it('should work', function (done) {
       var cache = render.__get__('cache');
       cache.should.not.have.property('index.html');
       cache.should.not.have.property('layout.html');
-      app.request().get('/').end(function (res) {
-        res.should.status(200);
-        res.body.toString().should.equal(success);
+      request(app).get('/')
+      .expect(200)
+      .expect(success)
+      .end(function (err, res) {
         cache.should.have.property('index.html').with.be.a('function');
         cache.should.have.property('layout.html').with.be.a('function');
         res.headers['content-length'].should.above(0);
@@ -88,9 +91,10 @@ describe('render.js', function () {
       var cache = render.__get__('cache');
       cache.should.have.property('index.html').with.be.a('function');
       cache.should.have.property('layout.html').with.be.a('function');
-      app.request().get('/').end(function (res) {
-        res.should.status(200);
-        res.body.toString().should.equal(success);
+      request(app).get('/')
+      .expect(200)
+      .expect(success)
+      .end(function (err, res) {
         cache.should.have.property('index.html').with.be.a('function');
         cache.should.have.property('layout.html').with.be.a('function');
         res.headers['content-length'].should.above(0);
@@ -99,56 +103,41 @@ describe('render.js', function () {
     });
 
     it('should error when view not exists', function (done) {
-      app.request().get('/viewerror').end(function (res) {
-        res.should.status(500);
-        res.body.toString().should.include('Error: ENOENT, open');
-        done();
-      });
+      request(app).get('/viewerror')
+      .expect(500)
+      .expect(/ENOENT/, done);      
     });
 
     it('should return no layout', function (done) {
-      app.request().get('/nolayout').end(function (res) {
-        res.should.status(200);
-        res.headers['content-length'].should.above(0);
-        res.body.toString().should.equal('nolayout');
-        done();
-      });
+      request(app).get('/nolayout')
+      .expect(200)
+      .expect('nolayout', done);
     });
 
     it('should return 500 when template error', function (done) {
-      app.request().get('/error').end(function (res) {
-        res.should.status(500);
-        res.body.toString().should.include('ReferenceError: error.html');
-        done();
-      });
+      request(app).get('/error')
+      .expect(500)
+      .expect(/ReferenceError:\serror\.html/, done);
     });
 
     it('should return 500 when layout error', function (done) {
-      app.request().get('/layout_error').end(function (res) {
-        res.should.status(500);
-        res.body.toString().should.include('error_var is not defined');
-        done();
-      });
+      request(app).get('/layout_error')
+      .expect(500)
+      .expect(/error_var is not defined/, done);
     });
 
     it('should support options.scope', function (done) {
-      app.request().get('/options.scope').end(function (res) {
-        res.should.status(200);
-        res.headers['content-length'].should.above(0);
-        res.body.toString().should.equal('scope test');
-        done();
-      });
+      request(app).get('/options.scope')
+      .expect(200)
+      .expect('scope test', done);
     });
   });
 
-  describe('#partial()', function () {
+  describe('partial()', function () {
     it('should fixed partial in partial', function (done) {
-      app.request().get('/partial_in_partial').end(function (res) {
-        res.should.status(200);
-        res.headers['content-length'].should.above(0);
-        res.body.toString().should.equal('partialpartial');
-        done();
-      });
+      request(app).get('/partial_in_partial')
+      .expect(200)
+      .expect('partialpartial', done);
     });
 
     it('should console.error when partial view not exists', function (done) {
@@ -158,10 +147,10 @@ describe('render.js', function () {
         var util = require('util');
         errormsg = util.format.apply(util, Array.prototype.slice.call(arguments));
       };
-      app.request().get('/partial_not_exists').end(function (res) {
-        res.should.status(200);
-        res.headers['content-length'].should.above(0);
-        res.body.toString().should.equal('partial_not_exists');
+      request(app).get('/partial_not_exists')
+      .expect(200)
+      .expect('partial_not_exists')
+      .end(function (err, res) {
         console.error = _error;
         errormsg.should.include('[connect-render] Error: cannot load view partial');
         errormsg.should.include('Error: ENOENT, no such file or directory');

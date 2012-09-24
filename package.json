@@ -10,6 +10,9 @@
     "type": "git",
     "url": "git://github.com/fengmk2/connect-render.git"
   },
+  "bugs": {
+    "url": "http://github.com/fengmk2/connect-render/issues"
+  },
   "scripts": {
     "test": "make test-all-version"
   },
@@ -21,8 +24,7 @@
     "mocha": "*",
     "connect": "*",
     "rewire": "*",
-    "jshint": "*",
-    "crc": "*"
+    "supertest": "*"
   },
   "license": "MIT",
   "engines": { 
