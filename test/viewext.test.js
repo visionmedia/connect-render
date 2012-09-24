@@ -83,7 +83,6 @@ describe('viewext.test.js', function () {
       .end(function (err, res) {
         cache.should.have.property('index.html').with.be.a('function');
         cache.should.have.property('layout.html').with.be.a('function');
-        res.headers['content-length'].should.above(0);
         done();
       });
     });
@@ -98,7 +97,6 @@ describe('viewext.test.js', function () {
       .end(function (err, res) {
         cache.should.have.property('index.html').with.be.a('function');
         cache.should.have.property('layout.html').with.be.a('function');
-        res.headers['content-length'].should.above(0);
         done();
       });
     });
