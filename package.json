@@ -14,7 +14,7 @@
     "url": "http://github.com/fengmk2/connect-render/issues"
   },
   "scripts": {
-    "test": "make test"
+    "test": "make test-all-version"
   },
   "dependencies": {
     "ejs": ">=0.6.1"
@@ -24,7 +24,7 @@
     "mocha": "*",
     "connect": "*",
     "rewire": "*",
-    "supertest": "*"
+    "supertest": "0.1.x"
   },
   "license": "MIT",
   "engines": { 
