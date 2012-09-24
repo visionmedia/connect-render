@@ -17,8 +17,9 @@ var render = process.env.CONNECT_RENDER_COV ? rewire('../lib-cov/render') : rewi
 var should = require('should');
 
 var options = {
-  root: path.join(__dirname, 'views'),
-  layout: 'layout.html',
+  root: path.join(__dirname, 'views_ext'),
+  layout: 'layout',
+  viewExt: '.html',
   cache: true, // `false` for debug
   helpers: {
     sitename: 'connect-render demo site',
@@ -33,40 +34,40 @@ var app = connect(render(options));
 
 app.use(function (req, res) {
   if (req.url === '/viewerror') {
-    return res.render('noexists.html', { name: 'fengmk2' });
+    return res.render('noexists', { name: 'fengmk2' });
   }
   if (req.url === '/nolayout') {
-    return res.render('nolayout.html', { layout: false });
+    return res.render('nolayout', { layout: false });
   }
   if (req.url === '/partial_in_partial') {
-    return res.render('./partial_in_partial.html', { layout: false });
+    return res.render('./partial_in_partial', { layout: false });
   }
   if (req.url === '/partial_not_exists') {
-    return res.render('partial_not_exists.html', { layout: false });
+    return res.render('partial_not_exists', { layout: false });
   }
   if (req.url === '/error') {
-    return res.render('error.html');
+    return res.render('error');
   }
   if (req.url === '/options.scope') {
-    return res.render('options.scope.html', { 
+    return res.render('options.scope', { 
       layout: false, 
       scope: { name: 'scope test' } 
     });
   }
   if (req.url === '/layout_error') {
-    return res.render('index.html', { 
-      layout: 'error.html', 
+    return res.render('index', { 
+      layout: 'error', 
       name: 'fengmk2'
     });
   }
-  res.render('index.html', { name: 'fengmk2' });
+  res.render('index', { name: 'fengmk2' });
 });
 
 var success = fs.readFileSync(__dirname + '/success.html', 'utf8')
   .replace('$starttime$', options.helpers.starttime);
 
 
-describe('render.test.js', function () {
+describe('viewext.test.js', function () {
   before(function (done) {
     app = app.listen(0, done);
   });
