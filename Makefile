@@ -26,7 +26,7 @@ clean:
 	@rm -f coverage.html
 
 test-version:
-	@npm install connect@$(v)
+	@npm install connect@$(v) --loglevel=warn
 	@$(MAKE) test REPORTER=min
 
 test-all-version:
