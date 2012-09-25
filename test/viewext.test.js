@@ -80,11 +80,12 @@ describe('viewext.test.js', function () {
       cache.should.not.have.property('layout.html');
       request(app).get('/')
       .expect(200)
+      .expect('Content-Type', 'text/html; charset=utf-8')
       .expect(success)
       .end(function (err, res) {
         cache.should.have.property('index.html').with.be.a('function');
         cache.should.have.property('layout.html').with.be.a('function');
-        done();
+        done(err);
       });
     });
 
@@ -98,7 +99,7 @@ describe('viewext.test.js', function () {
       .end(function (err, res) {
         cache.should.have.property('index.html').with.be.a('function');
         cache.should.have.property('layout.html').with.be.a('function');
-        done();
+        done(err);
       });
     });
 
@@ -154,7 +155,7 @@ describe('viewext.test.js', function () {
         console.error = _error;
         errormsg.should.include('[connect-render] Error: cannot load view partial');
         errormsg.should.include('Error: ENOENT, no such file or directory');
-        done();
+        done(err);
       });
     });
   });
