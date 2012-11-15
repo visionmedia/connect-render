@@ -1,1 +1,3 @@
-module.exports = process.env.CONNECT_RENDER_COV ? require('./lib-cov/render') : require('./lib/render');
+var libdir = process.env.CONNECT_RENDER_COV ? './lib-cov' : './lib';
+module.exports = require(libdir + '/render');
+module.exports.filters = require(libdir + '/filters');

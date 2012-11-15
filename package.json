@@ -17,11 +17,13 @@
     "test": "make test-all-version"
   },
   "dependencies": {
-    "ejs": ">=0.6.1"
+    "moment": "1.7.x",
+    "ejs": "0.8.x"
   },
   "devDependencies": {
     "should": "*",
     "mocha": "*",
+    "jscover": "*",
     "connect": "*",
     "rewire": "*",
     "supertest": "*"

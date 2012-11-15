@@ -50,6 +50,65 @@ app.use(function (req, res) {
 app.listen(8080);
 ```
 
+## API
+
+### middleware(options)
+
+```js
+/**
+ * connect-render: Template Render helper for connect
+ * 
+ * Use case:
+ * 
+ * var render = require('connect-render');
+ * var connect = require('connect');
+ * 
+ * connect(
+ *   render({
+ *     root: __dirname + '/views',
+ *     cache: true, // must set `true` in production env
+ *     layout: 'layout.html', // or false for no layout
+ *     helpers: {
+ *       config: config,
+ *       sitename: 'NodeBlog Engine',
+ *       _csrf: function (req, res) {
+ *         return req.session ? req.session._csrf : "";
+ *       },
+ *     }
+ *   });
+ * );
+ * 
+ * res.render('index.html', { title: 'Index Page', items: items });
+ * 
+ * // no layout 
+ * res.render('blue.html', { items: items, layout: false });
+ * 
+ * @param {Object} [options={}] render options.
+ *  - {String} layout, layout name, default is `'layout.html'`.
+ *    Set `layout=''` or `layout=false` meaning no layout.
+ *  - {String} root, view files root dir.
+ *  - {Boolean} cache, cache view content or not, default is `true`.
+ *    Must set `cache = true` on production.
+ *  - {String} viewExt, view file extname, default is `''`.
+ * @return {Function} render middleware for `connect`
+ */
+function middleware(options) {}
+```
+
+### HttpServerResponse.render(view, options)
+
+```js
+/**
+ * Render the view fill with options
+ * 
+ * @param {String} view, view name.
+ * @param {Object} [options=null]
+ *  - {Boolean} layout, use layout or not, default is `true`.
+ * @return {HttpServerResponse} this
+ */
+function render(view, options) {}
+```
+
 ## License 
 
 (The MIT License)

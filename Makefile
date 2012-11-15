@@ -1,6 +1,7 @@
 TESTS = test/*.test.js
 TIMEOUT = 1000
 MOCHA_OPTS =
+JSCOVERAGE = ./node_modules/jscover/bin/jscover
 REPORTER = spec
 SUPPORT_VERSIONS := \
 	1.8.0 1.8.5 1.8.6 1.8.7 \
@@ -18,8 +19,8 @@ test-cov: lib-cov
 	@CONNECT_RENDER_COV=1 $(MAKE) test REPORTER=html-cov > coverage.html
 
 lib-cov:
-	@rm -rf lib-cov
-	@jscoverage lib lib-cov
+	@rm -rf $@
+	@$(JSCOVERAGE) lib $@
 
 clean:
 	@rm -rf lib-cov
