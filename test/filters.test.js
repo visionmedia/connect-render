@@ -38,7 +38,7 @@ describe('filters.test.js', function () {
     });
 
     it('should worked', function () {
-      var p = filters.TRUNCATE_PEDDING;
+      var p = '…';
       filters.truncatechars('', 10).should.equal('');
       filters.truncatechars(0, 10).should.equal('0');
       filters.truncatechars(false, 10).should.equal('false');

@@ -1,6 +1,6 @@
-# connect-render
+# connect-render [![Build Status](https://secure.travis-ci.org/fengmk2/connect-render.png)](http://travis-ci.org/fengmk2/connect-render)
 
-[![Build Status](https://secure.travis-ci.org/fengmk2/connect-render.png)](http://travis-ci.org/fengmk2/connect-render)
+![logo](https://raw.github.com/fengmk2/connect-render/master/logo.png)
 
 Template render helper using [ejs](https://github.com/visionmedia/ejs) for [connect](https://github.com/senchalabs/connect).
 
@@ -13,6 +13,9 @@ Support `connect` @1.8.x, @1.9.x and @2.2.0+ .
 * 2.2.x: 2.2.0 2.2.1 2.2.2 
 * 2.3.x: 2.3.0 2.3.1 2.3.2 2.3.3 2.3.4 2.3.5 2.3.6 2.3.7 2.3.8 2.3.9
 * 2.4.x: 2.4.0 2.4.1 2.4.2 2.4.3 2.4.4 2.4.5 2.4.6
+* 2.5.x
+* 2.6.x
+* 2.7.x
 
 Coverage: [**100%**](http://fengmk2.github.com/coverage/connect-render.html)
 
@@ -24,7 +27,7 @@ $ npm install connect-render
 
 ## Usage
 
-```javascript
+```js
 var connect = require('connect');
 var render = require('connect-render');
 

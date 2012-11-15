@@ -26,6 +26,11 @@ var options = {
     requestURL: function (req, res) {
       return req.url;
     }
+  },
+  filters: {
+    query: function (url) {
+      return require('url').parse(url);
+    }
   }
 };
 
@@ -34,6 +39,9 @@ var app = connect(render(options));
 app.use(function (req, res) {
   if (req.url === '/viewerror') {
     return res.render('noexists.html', { name: 'fengmk2' });
+  }
+  if (req.url === '/filters') {
+    return res.render('filters.html', { layout: false });
   }
   if (req.url === '/nolayout') {
     return res.render('nolayout.html', { layout: false });
@@ -128,6 +136,12 @@ describe('render.test.js', function () {
       request(app).get('/options.scope')
       .expect(200)
       .expect('scope test', done);
+    });
+
+    it('should render with filters', function (done) {
+      request(app).get('/filters')
+      .expect(200)
+      .expect('你… | 12,345.12 | 2012-11-11 00:00:00 | {"pathname":"/filters","path":"/filters","href":"/filters"}', done);
     });
   });
 
