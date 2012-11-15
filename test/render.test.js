@@ -141,7 +141,7 @@ describe('render.test.js', function () {
     it('should render with filters', function (done) {
       request(app).get('/filters')
       .expect(200)
-      .expect('你… | 12,345.12 | 2012-11-11 00:00:00 | {"pathname":"/filters","path":"/filters","href":"/filters"}', done);
+      .expect('你… | 12,345.12 | 2012-11-11 00:00:00 | /filters', done);
     });
   });
 
