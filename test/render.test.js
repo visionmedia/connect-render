@@ -25,7 +25,8 @@ var options = {
     starttime: new Date().getTime(),
     requestURL: function (req, res) {
       return req.url;
-    }
+    },
+    overwrite: 'default'
   },
   filters: {
     query: function (url) {
@@ -67,6 +68,18 @@ app.use(function (req, res) {
       name: 'fengmk2'
     });
   }
+  if (req.url === '/overwrite') {
+    return res.render('overwrite.html', { 
+      layout: false, 
+      overwrite: 'success'
+    });
+  }
+  if (req.url === '/nooverwrite') {
+    return res.render('overwrite.html', { 
+      layout: false
+    });
+  }
+
   res.render('index.html', { name: 'fengmk2' });
 });
 
@@ -142,6 +155,18 @@ describe('render.test.js', function () {
       request(app).get('/filters')
       .expect(200)
       .expect('你… | 12,345.12 | 2012-11-11 00:00:00 | /filters', done);
+    });
+
+    it('should overwrite:`default` to overwrite:`success`', function (done) {
+      request(app).get('/overwrite')
+      .expect(200)
+      .expect('success', done);
+    });
+
+    it('should overwrite:`default` to overwrite:`default`', function (done) {
+      request(app).get('/nooverwrite')
+      .expect(200)
+      .expect('default', done);
     });
   });
 
