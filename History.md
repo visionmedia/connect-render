@@ -1,4 +1,11 @@
 
+0.2.1 / 2013-03-01 
+==================
+
+  * Merge pull request #2 from coolme200/fix-mailhelp-overwrite-subhelp
+  * mailhelp-overwrite-subhelp
+  * fixed urlparse cases
+
 0.2.0 / 2012-11-15 
 ==================
 

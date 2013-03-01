@@ -112,11 +112,26 @@ function middleware(options) {}
 function render(view, options) {}
 ```
 
+## Authors
+
+```bash
+$ git summary 
+
+ project  : connect-render
+ repo age : 1 year
+ active   : 10 days
+ commits  : 28
+ files    : 42
+ authors  : 
+    27  fengmk2                 96.4%
+     1  tangyao                 3.6%
+```
+
 ## License 
 
 (The MIT License)
 
-Copyright (c) 2012 fengmk2 &lt;fengmk2@gmail.com&gt;
+Copyright (c) 2012 - 2013 fengmk2 &lt;fengmk2@gmail.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
