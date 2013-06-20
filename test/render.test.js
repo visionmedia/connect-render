@@ -13,7 +13,7 @@ var rewire = require('rewire');
 var fs = require('fs');
 var connect = require('connect');
 var request = require('supertest');
-var render = process.env.CONNECT_RENDER_COV ? rewire('../lib-cov/render') : rewire('../lib/render');
+var render = rewire('../lib/render');
 var should = require('should');
 
 var options = {

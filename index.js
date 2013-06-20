@@ -1,3 +1,14 @@
-var libdir = process.env.CONNECT_RENDER_COV ? './lib-cov' : './lib';
-module.exports = require(libdir + '/render');
-module.exports.filters = require(libdir + '/filters');
+/*!
+ * connect-render - index.js
+ * Copyright(c) 2013 fengmk2 <fengmk2@gmail.com>
+ * MIT Licensed
+ */
+
+"use strict";
+
+/**
+ * Module dependencies.
+ */
+
+module.exports = require('./lib/render');
+module.exports.filters = require('./lib/filters');

@@ -1,4 +1,9 @@
 
+0.2.2 / 2013-06-20 
+==================
+
+  * use blanket instead of jscover; update moment deps.
+
 0.2.1 / 2013-03-01 
 ==================
 
