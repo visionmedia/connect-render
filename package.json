@@ -14,22 +14,29 @@
     "url": "http://github.com/fengmk2/connect-render/issues"
   },
   "scripts": {
-    "test": "make test-all-version"
+    "test": "make test-all-version",
+    "blanket": {
+      "pattern": "connect-render/lib"
+    },
+    "travis-cov": {
+      "threshold": 100
+    }
   },
   "dependencies": {
-    "moment": "1.7.x",
+    "moment": "2.x.x",
     "ejs": "0.8.x"
   },
   "devDependencies": {
     "should": "*",
     "mocha": "*",
-    "jscover": "*",
+    "blanket": "*",
+    "travis-cov": "*",
     "connect": "*",
     "rewire": "*",
     "supertest": "*"
   },
   "license": "MIT",
   "engines": { 
-    "node": ">= 0.6.17" 
+    "node": ">= 0.8.0"
   }
 }

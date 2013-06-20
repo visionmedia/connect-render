@@ -1,7 +1,6 @@
 TESTS = test/*.test.js
 TIMEOUT = 1000
 MOCHA_OPTS =
-JSCOVERAGE = ./node_modules/jscover/bin/jscover
 REPORTER = spec
 SUPPORT_VERSIONS := \
 	1.8.0 1.8.5 1.8.6 1.8.7 \
@@ -10,23 +9,22 @@ SUPPORT_VERSIONS := \
 	2.3.0 2.3.1 2.3.2 2.3.3 2.3.4 2.3.5 2.3.6 2.3.7 2.3.8 2.3.9 \
 	2.4.0 2.4.1 2.4.2 2.4.3 2.4.4 2.4.5 2.4.6 \
 	2.5.0 2.6.0 2.6.1 2.6.2 \
-	2.7.0 2.7.1 2.7.2 2.7.3
+	2.7.0 2.7.1 2.7.2 2.7.3 2.7.4 2.7.5 2.7.6 2.7.7 2.7.8 2.7.9 2.7.10 2.7.11
 
-test:
+install:
+	@npm install
+
+test: install
 	@NODE_ENV=test ./node_modules/.bin/mocha -R $(REPORTER) --timeout $(TIMEOUT) \
 		$(MOCHA_OPTS) $(TESTS)
 
-test-cov: lib-cov
-	@CONNECT_RENDER_COV=1 $(MAKE) test REPORTER=dot
-	@CONNECT_RENDER_COV=1 $(MAKE) test REPORTER=html-cov > coverage.html
-
-lib-cov:
-	@rm -rf $@
-	@$(JSCOVERAGE) lib $@
-
-clean:
-	@rm -rf lib-cov
+test-cov:
 	@rm -f coverage.html
+	@$(MAKE) test MOCHA_OPTS='--require blanket' REPORTER=travis-cov
+	@$(MAKE) test MOCHA_OPTS='--require blanket' REPORTER=html-cov > coverage.html
+	@ls -lh coverage.html
+
+test-all: test test-cov
 
 test-version:
 	@npm install connect@$(v) --loglevel=warn
@@ -37,4 +35,4 @@ test-all-version:
 		$(MAKE) test-version v=$$version; \
 	done
 
-.PHONY: test test-cov clean lib-cov test-version test-all-version
+.PHONY: test test-cov test-all test-version test-all-version
