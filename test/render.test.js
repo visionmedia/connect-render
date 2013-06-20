@@ -38,6 +38,7 @@ var options = {
 var app = connect(render(options));
 
 app.use(function (req, res) {
+  res.setHeader('Content-Type', 'text/html');
   if (req.url === '/viewerror') {
     return res.render('noexists.html', { name: 'fengmk2' });
   }
@@ -141,8 +142,12 @@ describe('render.test.js', function () {
 
     it('should return 500 when template error', function (done) {
       request(app).get('/error')
-      .expect(500)
-      .expect(/ReferenceError:\serror\.html/, done);
+      .expect(500, function (err, res) {
+        should.not.exists(err);
+        res.text.should.include('ReferenceError: ');
+        res.text.should.include('error_var is not defined');
+        done();
+      });
     });
 
     it('should return 500 when layout error', function (done) {
