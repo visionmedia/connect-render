@@ -59,7 +59,8 @@ app.use(function (req, res) {
   if (req.url === '/options.scope') {
     return res.render('options.scope.html', { 
       layout: false, 
-      scope: { name: 'scope test' } 
+      scope: { name: 'scope test' },
+      othername: 'out of scope name'
     });
   }
   if (req.url === '/layout_error') {
@@ -81,6 +82,11 @@ app.use(function (req, res) {
   }
 
   res.render('index.html', { name: 'fengmk2' });
+});
+
+app.use(function (err, req, res, next) {
+  // console.log(err.stack);
+  next(err);
 });
 
 var success = fs.readFileSync(__dirname + '/success.html', 'utf8')
@@ -145,10 +151,15 @@ describe('render.test.js', function () {
       .expect(/error_var is not defined/, done);
     });
 
-    it('should support options.scope', function (done) {
+    // options.scope not support on ejs@0.8.4+
+    // https://github.com/visionmedia/ejs/commit/5786c8e5af92f4a52a214850b6b1220682ed9d79
+    it.skip('should support options.scope', function (done) {
       request(app).get('/options.scope')
-      .expect(200)
-      .expect('scope test', done);
+      .expect(200, function (err, res) {
+        should.not.exists(err);
+        res.text.should.equal('scope test:out of scope name');
+        done();
+      });
     });
 
     it('should render with filters', function (done) {

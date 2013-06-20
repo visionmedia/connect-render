@@ -16,7 +16,7 @@ install:
 
 test: install
 	@NODE_ENV=test ./node_modules/.bin/mocha -R $(REPORTER) --timeout $(TIMEOUT) \
-		$(MOCHA_OPTS) $(TESTS)
+		--bail $(MOCHA_OPTS) $(TESTS)
 
 test-cov:
 	@rm -f coverage.html

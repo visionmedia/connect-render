@@ -127,7 +127,9 @@ describe('viewext.test.js', function () {
       .expect(/error_var is not defined/, done);
     });
 
-    it('should support options.scope', function (done) {
+    // options.scope not support on ejs@0.8.4+
+    // https://github.com/visionmedia/ejs/commit/5786c8e5af92f4a52a214850b6b1220682ed9d79
+    it.skip('should support options.scope', function (done) {
       request(app).get('/options.scope')
       .expect(200)
       .expect('scope test', done);
