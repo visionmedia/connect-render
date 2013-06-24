@@ -1,4 +1,4 @@
-# connect-render [![Build Status](https://secure.travis-ci.org/fengmk2/connect-render.png)](http://travis-ci.org/fengmk2/connect-render)
+# connect-render [![Build Status](https://secure.travis-ci.org/fengmk2/connect-render.png)](http://travis-ci.org/fengmk2/connect-render) [![Coverage Status](https://coveralls.io/repos/fengmk2/connect-render/badge.png)](https://coveralls.io/r/fengmk2/connect-render)
 
 ![logo](https://raw.github.com/fengmk2/connect-render/master/logo.png)
 
@@ -16,8 +16,6 @@ Support `connect` @1.8.x, @1.9.x and @2.2.0+ .
 * 2.5.x
 * 2.6.x
 * 2.7.x
-
-Coverage: [**100%**](http://fengmk2.github.com/coverage/connect-render.html)
 
 ## Install
 

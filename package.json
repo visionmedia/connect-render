@@ -14,7 +14,7 @@
     "url": "http://github.com/fengmk2/connect-render/issues"
   },
   "scripts": {
-    "test": "make test-all-version",
+    "test": "make test-all",
     "blanket": {
       "pattern": "connect-render/lib"
     },
@@ -31,6 +31,8 @@
     "mocha": "*",
     "blanket": "*",
     "travis-cov": "*",
+    "coveralls": "*",
+    "mocha-lcov-reporter": "*",
     "connect": "*",
     "rewire": "*",
     "supertest": "*"
