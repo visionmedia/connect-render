@@ -1,4 +1,11 @@
 
+0.3.1 / 2013-07-08 
+==================
+
+  * check exists content-type first
+  * support coveralls
+  * fixed test cases fail on node 0.11+
+
 0.3.0 / 2013-06-20 
 ==================
 
