@@ -38,12 +38,15 @@ var options = {
 var app = connect(render(options));
 
 app.use(function (req, res) {
-  res.setHeader('Content-Type', 'text/html');
   if (req.url === '/viewerror') {
     return res.render('noexists.html', { name: 'fengmk2' });
   }
   if (req.url === '/filters') {
     return res.render('filters.html', { layout: false });
+  }
+  if (req.url === '/xml') {
+    res.setHeader('Content-Type', 'text/xml');
+    return res.render('xml.html', { layout: false });
   }
   if (req.url === '/nolayout') {
     return res.render('nolayout.html', { layout: false });
@@ -112,6 +115,13 @@ describe('render.test.js', function () {
         cache.should.have.property('layout.html').with.be.a('function');
         done(err);
       });
+    });
+
+    it('should return text/xml', function (done) {
+      request(app)
+      .get('/xml')
+      .expect('Content-Type', 'text/xml; charset=utf-8')
+      .expect(200, done);
     });
 
     it('should work with cache', function (done) {
