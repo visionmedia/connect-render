@@ -116,13 +116,13 @@ function render(view, options) {}
 $ git summary 
 
  project  : connect-render
- repo age : 1 year
- active   : 10 days
- commits  : 28
- files    : 42
+ repo age : 1 year, 8 months
+ active   : 14 days
+ commits  : 39
+ files    : 43
  authors  : 
-    27  fengmk2                 96.4%
-     1  tangyao                 3.6%
+    37  fengmk2                 94.9%
+     2  tangyao                 5.1%
 ```
 
 ## License 

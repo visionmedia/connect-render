@@ -1,4 +1,10 @@
 
+0.3.2 / 2013-10-11 
+==================
+
+  * fix unit test for rewire new apis
+  * fix viewpath for ejs include
+
 0.3.1 / 2013-07-08 
 ==================
 
