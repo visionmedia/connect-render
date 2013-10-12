@@ -16,6 +16,8 @@ Support `connect` @1.8.x, @1.9.x and @2.2.0+ .
 * 2.5.x
 * 2.6.x
 * 2.7.x
+* 2.8.x
+* 2.9.x
 
 ## Install
 
