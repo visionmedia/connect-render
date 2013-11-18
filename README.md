@@ -1,5 +1,7 @@
 # connect-render [![Build Status](https://secure.travis-ci.org/fengmk2/connect-render.png)](http://travis-ci.org/fengmk2/connect-render) [![Coverage Status](https://coveralls.io/repos/fengmk2/connect-render/badge.png)](https://coveralls.io/r/fengmk2/connect-render)
 
+[![NPM](https://nodei.co/npm/connect-render.png?downloads=true&stars=true)](https://nodei.co/npm/connect-render)
+
 ![logo](https://raw.github.com/fengmk2/connect-render/master/logo.png)
 
 Template render helper using [ejs](https://github.com/visionmedia/ejs) for [connect](https://github.com/senchalabs/connect).
@@ -10,7 +12,7 @@ Support `connect` @1.8.x, @1.9.x and @2.2.0+ .
 
 * 1.8.x: 1.8.0 1.8.5 1.8.6 1.8.7
 * 1.9.x: 1.9.0 1.9.1 1.9.2
-* 2.2.x: 2.2.0 2.2.1 2.2.2 
+* 2.2.x: 2.2.0 2.2.1 2.2.2
 * 2.3.x: 2.3.0 2.3.1 2.3.2 2.3.3 2.3.4 2.3.5 2.3.6 2.3.7 2.3.8 2.3.9
 * 2.4.x: 2.4.0 2.4.1 2.4.2 2.4.3 2.4.4 2.4.5 2.4.6
 * 2.5.x
@@ -60,12 +62,12 @@ app.listen(8080);
 ```js
 /**
  * connect-render: Template Render helper for connect
- * 
+ *
  * Use case:
- * 
+ *
  * var render = require('connect-render');
  * var connect = require('connect');
- * 
+ *
  * connect(
  *   render({
  *     root: __dirname + '/views',
@@ -80,12 +82,12 @@ app.listen(8080);
  *     }
  *   });
  * );
- * 
+ *
  * res.render('index.html', { title: 'Index Page', items: items });
- * 
- * // no layout 
+ *
+ * // no layout
  * res.render('blue.html', { items: items, layout: false });
- * 
+ *
  * @param {Object} [options={}] render options.
  *  - {String} layout, layout name, default is `'layout.html'`.
  *    Set `layout=''` or `layout=false` meaning no layout.
@@ -103,7 +105,7 @@ function middleware(options) {}
 ```js
 /**
  * Render the view fill with options
- * 
+ *
  * @param {String} view, view name.
  * @param {Object} [options=null]
  *  - {Boolean} layout, use layout or not, default is `true`.
@@ -115,19 +117,19 @@ function render(view, options) {}
 ## Authors
 
 ```bash
-$ git summary 
+$ git summary
 
  project  : connect-render
  repo age : 1 year, 8 months
  active   : 14 days
  commits  : 39
  files    : 43
- authors  : 
+ authors  :
     37  fengmk2                 94.9%
      2  tangyao                 5.1%
 ```
 
-## License 
+## License
 
 (The MIT License)
 
