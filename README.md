@@ -73,6 +73,8 @@ app.listen(8080);
  *     root: __dirname + '/views',
  *     cache: true, // must set `true` in production env
  *     layout: 'layout.html', // or false for no layout
+ *     open: "<%", // ejs open tag, default is '<%'
+ *     close: "%>", // ejs close tag, default is '%>'
  *     helpers: {
  *       config: config,
  *       sitename: 'NodeBlog Engine',
