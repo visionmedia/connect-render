@@ -14,7 +14,7 @@ SUPPORT_VERSIONS := \
 	2.9.0
 
 install:
-	@npm install
+	@npm install --registry=http://r.cnpmjs.org
 
 test: install
 	@NODE_ENV=test ./node_modules/.bin/mocha -R $(REPORTER) --timeout $(TIMEOUT) \
@@ -42,4 +42,7 @@ test-coveralls:
 	@echo TRAVIS_JOB_ID $(TRAVIS_JOB_ID)
 	-@$(MAKE) test MOCHA_OPTS='--require blanket' REPORTER=mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js
 
-.PHONY: test test-cov test-all test-version test-all-version test-coveralls
+contributors: install
+	@./node_modules/.bin/contributors -f plain -o AUTHORS
+
+.PHONY: test

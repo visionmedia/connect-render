@@ -1,4 +1,12 @@
 
+0.3.3 / 2014-02-26 
+==================
+
+  * Fix #5, when ejs refererences is differences, setting tag will fails (@JacksonTian)
+  * add npm image
+  * coveralls request fail should not let test error
+  * work with connect@2.8.x and @2.9.x
+
 0.3.2 / 2013-10-11 
 ==================
 

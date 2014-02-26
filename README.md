@@ -122,20 +122,21 @@ function render(view, options) {}
 $ git summary
 
  project  : connect-render
- repo age : 1 year, 8 months
- active   : 14 days
- commits  : 39
- files    : 43
+ repo age : 2 years
+ active   : 17 days
+ commits  : 45
+ files    : 45
  authors  :
-    37  fengmk2                 94.9%
-     2  tangyao                 5.1%
+    42  fengmk2                 93.3%
+     2  tangyao                 4.4%
+     1  Jackson Tian            2.2%
 ```
 
 ## License
 
 (The MIT License)
 
-Copyright (c) 2012 - 2013 fengmk2 &lt;fengmk2@gmail.com&gt;
+Copyright (c) 2012 - 2014 fengmk2 &lt;fengmk2@gmail.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
