@@ -23,8 +23,7 @@
     }
   },
   "dependencies": {
-    "moment": "2.x.x",
-    "ejs": "0.8.x"
+    "ejs": "1.0.x"
   },
   "devDependencies": {
     "contributors": "*",

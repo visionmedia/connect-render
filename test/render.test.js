@@ -57,6 +57,9 @@ app.use(function (req, res) {
   if (req.url === '/partial_not_exists') {
     return res.render('partial_not_exists.html', { layout: false });
   }
+  if (req.url === '/include') {
+    return res.render('include.html', { layout: false, name: 'fengmk2', index: 'index' });
+  }
   if (req.url === '/error') {
     return res.render('error.html');
   }
@@ -182,7 +185,7 @@ describe('render.test.js', function () {
     it('should render with filters', function (done) {
       request(app).get('/filters')
       .expect(200)
-      .expect('你… | 12,345.12 | 2012-11-11 00:00:00 | /filters', done);
+      .expect('你… | /filters\n', done);
     });
 
     it('should overwrite:`default` to overwrite:`success`', function (done) {
@@ -221,6 +224,14 @@ describe('render.test.js', function () {
         errormsg.should.include('Error: ENOENT, no such file or directory');
         done(err);
       });
+    });
+  });
+
+  describe('include with ejs', function () {
+    it('should support include', function (done) {
+      request(app).get('/include')
+      .expect(200)
+      .expect('Hi, I will include "be_included".\nI should be included\n\n', done);
     });
   });
 });
