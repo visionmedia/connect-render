@@ -1,4 +1,9 @@
 
+0.4.0 / 2014-04-22
+==================
+
+ * Support ejs include feature (@JacksonTian), inline fmoney and dateformat filter had been removed.
+
 0.3.3 / 2014-02-26 
 ==================
 

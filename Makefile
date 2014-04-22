@@ -46,4 +46,7 @@ test-coveralls:
 contributors: install
 	@./node_modules/.bin/contributors -f plain -o AUTHORS
 
+autod: install
+	@./node_modules/.bin/autod -w -e example
+
 .PHONY: test
